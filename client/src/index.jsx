@@ -19,6 +19,7 @@ class App extends React.Component {
       type: 'POST',
       url: "/repos",
       dataType: 'json',
+      data: `${term}`,
 
       success: function(){
         console.log('success');
