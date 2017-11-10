@@ -12,11 +12,15 @@ app.post('/repos', function (req, res) {
     username += data;
     helper.getReposByUsername(username);
   });
+  req.on('end', function(){
+
+  });
+  res.send('hi');
 });
 
 app.get('/repos', function (req, res) {
   db.pull().then ((docs) => {
-    console.log(docs);
+    res.send(docs);
   });
 });
 

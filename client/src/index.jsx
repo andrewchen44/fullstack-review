@@ -18,14 +18,34 @@ class App extends React.Component {
       type: 'POST',
       url: "/repos",
       dataType: 'json',
-      data: `${term}`
-    })
-    $.ajax({
-      type:'GET',
-      url: "/repos",
-      dataType: 'json',
+      data: `${term}`,
+      success: (data) => {
+        console.log('getting in here');
+        $.ajax({
+          type: "GET",
+          url: "/repos",
+          dataType: "json",
+          success: (data) => {
+            console.log(this);
+            this.setState({ repos: data });
+          }
+        });
+
+      }
     })
   }
+
+  componentDidMount() {
+    $.ajax({
+    type:'GET',
+    url: "/repos",
+    dataType: 'json',
+    success: (data) => { 
+       this.setState({repos: data});
+    }
+    });
+  }
+
 
   render () {
     return (<div>

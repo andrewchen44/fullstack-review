@@ -37,7 +37,7 @@ let save = (link) => {
 }
 
 let pull = () => {
-  return Repo.find({}).sort({ createdAt: -1 });
+  return Repo.find({}).sort({ createdAt: -1 }).limit(25);
 }
 
 module.exports.pull = pull;
