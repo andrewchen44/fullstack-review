@@ -10,7 +10,6 @@ class App extends React.Component {
     this.state = { 
       repos: []
     }
-
   }
 
   search (term) {
@@ -20,6 +19,11 @@ class App extends React.Component {
       url: "/repos",
       dataType: 'json',
       data: `${term}`
+    })
+    $.ajax({
+      type:'GET',
+      url: "/repos",
+      dataType: 'json',
     })
   }
 

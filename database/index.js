@@ -36,6 +36,11 @@ let save = (link) => {
   });
 }
 
+let pull = () => {
+  return Repo.find({}).sort({ createdAt: -1 });
+}
+
+module.exports.pull = pull;
 module.exports.save = save;
 
 //to start
