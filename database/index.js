@@ -14,27 +14,18 @@ var option = {
   }
 };
 mongoose.connect('mongodb://127.0.0.1/fetcher', option);
-
 var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error'));
-db.once('open', function(){
-  console.log('database running');
+
   let repoSchema = mongoose.Schema({
-    users: String
+    url: String
   });
-
   let Repo = mongoose.model("Repo", repoSchema);
-  let myRepo = new Repo({users: 'Victor'});
 
-  myRepo.save();
-});
-
-
-
-let save = (/* TODO */) => {
-  // TODO: Your code here
-  // This function should save a repo or repos to
-  // the MongoDB
+let save = (link) => {
+  let entry = new Repo({
+      url: link
+  });
+  entry.save();
 }
 
 module.exports.save = save;
@@ -44,6 +35,3 @@ module.exports.save = save;
 
 //to connect
 //"C:\Program Files\MongoDB\Server\3.4\bin\mongo.exe"
-
-//to end
-//control c
