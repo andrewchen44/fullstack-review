@@ -15,6 +15,7 @@ app.post('/repos', function (req, res) {
 });
 
 app.get('/repos', function (req, res) {
+  console.log('get request on refresh');
   // TODO - your code here!
   // This route should send back the top 25 repos
 });

@@ -16,16 +16,21 @@ var option = {
 mongoose.connect('mongodb://127.0.0.1/fetcher', option);
 var db = mongoose.connection;
 
-  let repoSchema = mongoose.Schema({
-    url: String
-  });
-  let Repo = mongoose.model("Repo", repoSchema);
+let repoSchema = mongoose.Schema({
+  url: String
+});
+
+let Repo = mongoose.model("Repo", repoSchema);
 
 let save = (link) => {
-  let entry = new Repo({
-      url: link
+
+  var query = Repo.find({url: link});
+  query.then(function(doc){
+    if(!doc.length) {
+        let entry = new Repo({ url: link });
+        entry.save();
+    }
   });
-  entry.save();
 }
 
 module.exports.save = save;
